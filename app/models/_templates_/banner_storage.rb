@@ -14,8 +14,10 @@ class BannerStorage < ActiveRecord::Base
 
     %Q(
       <div style="position:relative;">
-        <iframe src="#{target}" width="#{banner.w}" height="#{banner.h}"> </iframe>
-        <a href="#{banner.uri}" style="position:absolute; top:0; left:0; display:inline-block; width:#{banner.w}px; height:#{banner.h}px; z-index:5;"></a>
+        <iframe src="#{target}?id=#{banner.id}" width="#{banner.w}" height="#{banner.h}"> </iframe>
+        
+        <a href="#{target}?id=#{banner.id}&click=true"
+          style="position:absolute; top:0; left:0; display:inline-block; width:#{banner.w}px; height:#{banner.h}px; z-index:5;"></a>
       </div>
     )
   end
