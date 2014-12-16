@@ -7,6 +7,7 @@ module Baeneroid
       mapper.resources :baeneroid, only: [] do
         mapper.collection do
           mapper.get :ping
+          mapper.get :proxy
         end
       end
 
