@@ -4,7 +4,11 @@ module Baeneroid
   class Routes
     def self.mixin mapper
 
-      mapper.get :ping
+      mapper.resources :baeneroid, only: [] do
+        mapper.collection do
+          mapper.get :ping
+        end
+      end
 
       # mapper.resources :comments, only: [] do
       #   mapper.collection do
