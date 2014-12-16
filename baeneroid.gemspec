@@ -20,6 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1.5"
 
   s.add_development_dependency "mysql2"
-
-  # s.add_development_dependency "pry"
+  s.add_development_dependency "paperclip", "~> 4.2"
 end
