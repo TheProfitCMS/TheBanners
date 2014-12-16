@@ -2,12 +2,6 @@ module Baeneroid
   module Model
     extend ActiveSupport::Concern
 
-    validates_inclusion_of :state, in: %w(draft publication)
-
-    before_create do
-      draft!
-    end
-
     def inc_view_count!
       conn.update("update `banner_storages` set `view_counter` = `view_counter` + 1 where `id` = #{self.id}")
       true
