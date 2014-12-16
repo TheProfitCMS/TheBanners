@@ -8,7 +8,6 @@ class BaeneroidGenerator < Rails::Generators::NamedBase
       cp_config
       cp_models
       cp_controllers
-      cp_helpers
     else
       puts 'Try to use: rails g baeneroid install'
     end
@@ -41,11 +40,4 @@ class BaeneroidGenerator < Rails::Generators::NamedBase
     end
   end
 
-  def cp_helpers
-    _path = "#{ root_path }/app/helpers/_templates_"
-
-    %w(banner_helper.rb).each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "app/helpers/#{ file_name }"
-    end
-  end
 end

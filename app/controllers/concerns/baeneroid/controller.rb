@@ -24,7 +24,7 @@ module Baeneroid
     private
 
     def current_banner
-      params[:id] ||= 1
+      params[:id] ||= 1 #fixme
       @current_banner ||= BannerStorage.find_by_id params[:id].to_i
     end
 

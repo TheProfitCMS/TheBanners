@@ -8,4 +8,16 @@ class BannerStorage < ActiveRecord::Base
     draft!
   end
 
+  def self.insert_chunk(name, target)
+    banner = find_by_name name
+    return nil unless banner
+
+    %Q(
+      <div style="position:relative;">
+        <iframe src="#{target}" width="#{banner.w}" height="#{banner.h}"> </iframe>
+        <a href="#{banner.uri}" style="position:absolute; top:0; left:0; display:inline-block; width:#{banner.w}px; height:#{banner.h}px; z-index:5;"></a>
+      </div>
+    )
+  end
+
 end
