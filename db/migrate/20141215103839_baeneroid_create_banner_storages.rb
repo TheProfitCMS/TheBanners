@@ -16,5 +16,9 @@ class BaeneroidCreateBannerStorages < ActiveRecord::Migration
 
       # t.timestamps
     end
+
+    add_index :banner_storages, :state
+    add_index :banner_storages, :view_counter
+    add_index :banner_storages, :click_counter    
   end
 end
