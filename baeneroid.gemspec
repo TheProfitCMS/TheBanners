@@ -1,15 +1,13 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-# Maintain your gem's version:
 require "baeneroid/version"
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "baeneroid"
   s.version     = Baeneroid::VERSION
   s.authors     = ["Dmitrii Komaritckii"]
   s.email       = ["dmitrii.komaritckii@izi.travel"]
-  s.homepage    = "http://yandex.ru/" # fixme
+  s.homepage    = "https://github.com/TheProfitCMS/"
   s.summary     = "Simple banner storage gem."
   s.description = "Simple banner storage gem."
   s.license     = "MIT"
@@ -23,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "paperclip", "~> 4.2"
   s.add_development_dependency "haml-rails"
   s.add_development_dependency "bootstrap-sass"
+  s.add_development_dependency "the_string_to_slug", "~> 1.2"
 end

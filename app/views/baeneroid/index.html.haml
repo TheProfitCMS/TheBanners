@@ -10,6 +10,7 @@
     %thead
       %tr
         %th Имя
+        %th Slug
         %th Ссылка
         %th Ширина (пкс.)
         %th Высота (пкс.)
@@ -23,6 +24,7 @@
         - if banner.published?
           %tr.active
             %td= banner.name
+            %td= banner.slug
             %td= banner.uri
             %td= banner.w
             %td= banner.h
@@ -33,6 +35,7 @@
         - else
           %tr
             %td= banner.name
+            %td= banner.slug
             %td= banner.uri
             %td= banner.w
             %td= banner.h

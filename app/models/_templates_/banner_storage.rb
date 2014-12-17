@@ -1,7 +1,7 @@
 class BannerStorage < ActiveRecord::Base
   include ::Baeneroid::Model
 
-  has_attached_file :image #, styles: { medium: "300x300>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { small: '200x200>' } #, default_url: "/images/:style/missing.png"
 
   validates_uniqueness_of :name
   validates_inclusion_of :state, in: %w(draft publication)
@@ -9,10 +9,21 @@ class BannerStorage < ActiveRecord::Base
   validates :image, attachment_presence: false
   validates_attachment_content_type :image, content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"]
 
-  def self.insert_chunk(name, target)
-    # fixme: draft/publication state
+  before_save do
+    self.slug = self.name.to_slug_param
+  end
 
-    banner = find_by_name name
+
+  def iframe_content
+    %Q(
+      <img src="#{image.url}" alt="#{self.slug}"/>
+      #{self.html_code}
+    )
+  end
+
+
+  def self.insert_chunk(slug, target)
+    banner = where(slug: slug, state: 'publication').first
     return nil unless banner
 
     %Q(

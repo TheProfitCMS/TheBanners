@@ -16,7 +16,7 @@ module Baeneroid
           current_banner.inc_click_count!
           redirect_to current_banner.uri
         else
-          render text: current_banner.html_code
+          render text: current_banner.iframe_content
         end
       else
         head(404, content_type: 'text/html')
@@ -64,7 +64,7 @@ module Baeneroid
     private
 
     def banner_storage_params
-      params.require(:banner_storage).permit(:name, :html_code, :uri, :w, :h, :state)
+      params.require(:banner_storage).permit(:name, :html_code, :uri, :w, :h, :state, :image)
     end
 
     def current_banner
