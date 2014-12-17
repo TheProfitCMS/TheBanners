@@ -3,7 +3,7 @@ module Baeneroid
 
   class Routes
     def self.mixin mapper
-      mapper.get 'baeneroid/proxy/:id' => 'baeneroid#proxy', as: 'baeneroid_proxy'
+      mapper.get 'baeneroid/proxy' => 'baeneroid#proxy', as: 'baeneroid_proxy'
       mapper.get 'baeneroid/ping' => 'baeneroid#ping', as: 'baeneroid_ping'
 
       mapper.get 'baeneroid/index' => 'baeneroid#index', as: 'baeneroid_index'
