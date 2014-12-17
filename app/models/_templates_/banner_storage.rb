@@ -5,6 +5,7 @@ class BannerStorage < ActiveRecord::Base
 
   validates_uniqueness_of :name
   validates_inclusion_of :state, in: %w(draft publication)
+  validates_presence_of :w, :h
 
   validates :image, attachment_presence: false
   validates_attachment_content_type :image, content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"]
