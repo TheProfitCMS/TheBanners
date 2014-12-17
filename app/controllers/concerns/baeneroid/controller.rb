@@ -50,26 +50,22 @@ module Baeneroid
       @banner = current_banner
 
       if @banner.update_attributes banner_storage_params
-        redirect_to baeneroid_index_url, notice: 'Баннер сохранён.'
+        redirect_to baeneroid_index_url, notice: 'Баннер обновлён.'
       else
         render action: 'edit'
       end
     end
 
-    # def destroy
-    #   @banner_storage.destroy
-    #   respond_to do |format|
-    #     format.html { redirect_to banner_storages_url }
-    #     format.json { head :no_content }
-    #   end
-    # end
+    def destroy
+      current_banner.destroy
+      redirect_to baeneroid_index_url, notice: 'Баннер удалён.'
+    end
 
     private
 
     def banner_storage_params
       params.require(:banner_storage).permit(:name, :html_code, :uri, :w, :h, :state)
     end
-
 
     def current_banner
       @current_banner ||= BannerStorage.find_by_id params[:id].to_i
