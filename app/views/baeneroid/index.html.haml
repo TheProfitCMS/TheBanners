@@ -1,0 +1,42 @@
+- content_for :baeneroid_main do
+
+  %h1 Список баннеров
+
+  = link_to 'Создать баннер', new_baeneroid_url, class: 'btn btn-default pull-right'
+
+  %br
+
+  %table.table
+    %thead
+      %tr
+        %th Имя
+        %th Ссылка
+        %th Ширина (пкс.)
+        %th Высота (пкс.)
+        %th Счётчик просмотров
+        %th Счётчик кликов
+        %th
+        %th
+
+    %tbody
+      - @banners.each do |banner|
+        - if banner.published?
+          %tr.active
+            %td= banner.name
+            %td= banner.uri
+            %td= banner.w
+            %td= banner.h
+            %td= banner.view_counter
+            %td= banner.click_counter
+            %td= link_to 'Правка', edit_baeneroid_url(banner)
+            %td= link_to 'Удалить', destroy_baeneroid_url(banner), data: { confirm: 'Вы уверены?' }
+        - else
+          %tr
+            %td= banner.name
+            %td= banner.uri
+            %td= banner.w
+            %td= banner.h
+            %td= banner.view_counter
+            %td= banner.click_counter
+            %td= link_to 'Правка', edit_baeneroid_url(banner)
+            %td= link_to 'Удалить', destroy_baeneroid_url(banner), data: { confirm: 'Вы уверены?' }

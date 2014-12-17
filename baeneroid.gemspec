@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Baeneroid::VERSION
   s.authors     = ["Dmitrii Komaritckii"]
   s.email       = ["dmitrii.komaritckii@izi.travel"]
-  s.homepage    = "TODO"
+  s.homepage    = "http://yandex.ru/" # fixme
   s.summary     = "Simple banner storage gem."
   s.description = "Simple banner storage gem."
   s.license     = "MIT"
@@ -21,4 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "mysql2"
   s.add_development_dependency "paperclip", "~> 4.2"
+  s.add_development_dependency "haml-rails"
+  s.add_development_dependency "bootstrap-sass"
 end

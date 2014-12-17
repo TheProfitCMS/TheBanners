@@ -6,11 +6,8 @@ class BannerStorage < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_inclusion_of :state, in: %w(draft publication)
 
+  validates :image, attachment_presence: false
   validates_attachment_content_type :image, content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"]
-
-  before_create do
-    draft!
-  end
 
   def self.insert_chunk(name, target)
     # fixme: draft/publication state

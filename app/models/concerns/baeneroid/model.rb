@@ -12,12 +12,8 @@ module Baeneroid
       true
     end
 
-    def draft!
-      update_attributes(state: 'draft')
-    end
-
-    def publication!
-      update_attributes(state: 'publication')
+    def published?
+      state == 'publication'
     end
 
     private

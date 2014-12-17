@@ -1,0 +1,45 @@
+- content_for :baeneroid_main do
+
+  %h1 Править баннер
+
+  = link_to 'Назад', baeneroid_index_url, class: 'pull-right'
+
+  %br
+
+  = form_for @banner, url: update_baeneroid_url(@banner) do |f|
+    - if @banner.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@banner.errors.count, 'error')} prohibited this banner from being saved:"
+        %ul
+          - @banner.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :name, 'Имя'
+      = f.text_field :name, class: 'form-control'
+
+    .field
+      = f.label :html_code, 'HTML-код'
+      = f.text_area :html_code, class: 'form-control'
+
+    .field
+      = f.label :uri, 'Ссылка'
+      = f.text_area :uri, class: 'form-control'
+
+    %hr
+
+    .field
+      = f.label :w, 'Ширина (пкс.)'
+      = f.text_field :w, class: 'form-control'
+    .field
+      = f.label :h, 'Высота (пкс.)'
+      = f.text_field :h, class: 'form-control'
+
+    %hr
+
+    .field
+      = f.label :state, 'Опубликовать?'
+      = f.check_box :state, {}, 'publication', 'draft'
+
+    .actions
+      = f.submit 'Сохранить', class: 'btn btn-default'
