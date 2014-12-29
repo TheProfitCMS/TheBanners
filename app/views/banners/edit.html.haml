@@ -2,11 +2,11 @@
 
   %h1 Править баннер
 
-  = link_to 'Назад', banners_index_url, class: 'pull-right'
+  = link_to 'Назад', banners_url, class: 'pull-right'
 
   %br
 
-  = form_for @banner, url: update_banners_url(@banner) do |f|
+  = form_for @banner, url: banner_url(@banner), method: :patch do |f|
     - if @banner.errors.any?
       #error_explanation
         %h2= "#{pluralize(@banner.errors.count, 'error')} prohibited this banner from being saved:"

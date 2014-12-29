@@ -2,11 +2,11 @@
 
   %h1 Создать баннер
 
-  = link_to 'Назад', banners_index_url, class: 'pull-right'
+  = link_to 'Назад', banners_url, class: 'pull-right'
 
   %br
 
-  = form_for @banner, url: create_banners_url, html: { multipart: true } do |f|
+  = form_for @banner, url: banners_url, method: :post, html: { multipart: true } do |f|
     - if @banner.errors.any?
       #error_explanation
         %h2= "#{pluralize(@banner.errors.count, 'error')} prohibited this banner from being saved:"
