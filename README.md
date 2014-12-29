@@ -1,4 +1,4 @@
-= TheBanners
+# TheBanners
 
 ```ruby
 git clone git@github.com:dk-iziteq/TheBanners.git
