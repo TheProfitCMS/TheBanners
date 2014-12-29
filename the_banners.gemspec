@@ -1,10 +1,10 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-require "baeneroid/version"
+require "the_banners/version"
 
 Gem::Specification.new do |s|
-  s.name        = "baeneroid"
-  s.version     = Baeneroid::VERSION
+  s.name        = "the_banners"
+  s.version     = TheBanners::VERSION
   s.authors     = ["Dmitrii Komaritckii"]
   s.email       = ["dmitrii.komaritckii@izi.travel"]
   s.homepage    = "https://github.com/TheProfitCMS/"

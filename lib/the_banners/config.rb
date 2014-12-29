@@ -1,6 +1,6 @@
-module Baeneroid
+module TheBanners
   def self.configure(&block)
-    yield @config ||= Baeneroid::Configuration.new
+    yield @config ||= TheBanners::Configuration.new
   end
 
   def self.config

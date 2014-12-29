@@ -1,12 +1,12 @@
-- content_for :baeneroid_main do
+- content_for :the_banners_main do
 
-  %h1 Править баннер
+  %h1 Создать баннер
 
-  = link_to 'Назад', baeneroid_index_url, class: 'pull-right'
+  = link_to 'Назад', the_banners_index_url, class: 'pull-right'
 
   %br
 
-  = form_for @banner, url: update_baeneroid_url(@banner) do |f|
+  = form_for @banner, url: create_the_banners_url, html: { multipart: true } do |f|
     - if @banner.errors.any?
       #error_explanation
         %h2= "#{pluralize(@banner.errors.count, 'error')} prohibited this banner from being saved:"
@@ -42,9 +42,6 @@
 
     .field
       = f.label :image, 'Изображение'
-      %br
-      = image_tag @banner.image.url(:small)
-      %br
       = f.file_field :image
 
     %hr

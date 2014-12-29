@@ -1,8 +1,8 @@
-- content_for :baeneroid_main do
+- content_for :the_banners_main do
 
   %h1 Список баннеров
 
-  = link_to 'Создать баннер', new_baeneroid_url, class: 'btn btn-default pull-right'
+  = link_to 'Создать баннер', new_the_banners_url, class: 'btn btn-default pull-right'
 
   %br
 
@@ -30,8 +30,8 @@
             %td= banner.h
             %td= banner.view_counter
             %td= banner.click_counter
-            %td= link_to 'Правка', edit_baeneroid_url(banner)
-            %td= link_to 'Удалить', destroy_baeneroid_url(banner), data: { confirm: 'Вы уверены?' }
+            %td= link_to 'Правка', edit_the_banners_url(banner)
+            %td= link_to 'Удалить', destroy_the_banners_url(banner), data: { confirm: 'Вы уверены?' }
         - else
           %tr
             %td= banner.name
@@ -41,5 +41,5 @@
             %td= banner.h
             %td= banner.view_counter
             %td= banner.click_counter
-            %td= link_to 'Правка', edit_baeneroid_url(banner)
-            %td= link_to 'Удалить', destroy_baeneroid_url(banner), data: { confirm: 'Вы уверены?' }
+            %td= link_to 'Правка', edit_the_banners_url(banner)
+            %td= link_to 'Удалить', destroy_the_banners_url(banner), data: { confirm: 'Вы уверены?' }

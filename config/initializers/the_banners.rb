@@ -1,3 +1,3 @@
-# Baeneroid.configure do |config|
+# TheBanners.configure do |config|
 #   config.test_accessor = true
 # end

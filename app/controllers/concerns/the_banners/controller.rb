@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-module Baeneroid
+module TheBanners
   module Controller
     extend ActiveSupport::Concern
 
@@ -25,11 +25,11 @@ module Baeneroid
 
 
     def index
-      @banners = BannerStorage.all
+      @banners = Banner.all
     end
 
     def new
-      @banner = BannerStorage.new
+      @banner = Banner.new
     end
 
     def edit
@@ -37,10 +37,10 @@ module Baeneroid
     end
 
     def create
-      @banner = BannerStorage.new banner_storage_params
+      @banner = Banner.new banner_params
 
       if @banner.save
-        redirect_to baeneroid_index_url, notice: 'Баннер сохранён.'
+        redirect_to the_banners_index_url, notice: 'Баннер сохранён.'
       else
         render action: 'new'
       end
@@ -49,8 +49,8 @@ module Baeneroid
     def update
       @banner = current_banner
 
-      if @banner.update_attributes banner_storage_params
-        redirect_to baeneroid_index_url, notice: 'Баннер обновлён.'
+      if @banner.update_attributes banner_params
+        redirect_to the_banners_index_url, notice: 'Баннер обновлён.'
       else
         render action: 'edit'
       end
@@ -58,17 +58,17 @@ module Baeneroid
 
     def destroy
       current_banner.destroy
-      redirect_to baeneroid_index_url, notice: 'Баннер удалён.'
+      redirect_to the_banners_index_url, notice: 'Баннер удалён.'
     end
 
     private
 
-    def banner_storage_params
-      params.require(:banner_storage).permit(:name, :html_code, :uri, :w, :h, :state, :image)
+    def banner_params
+      params.require(:banner).permit(:name, :html_code, :uri, :w, :h, :state, :image)
     end
 
     def current_banner
-      @current_banner ||= BannerStorage.find_by_id params[:id].to_i
+      @current_banner ||= Banner.find_by_id params[:id].to_i
     end
 
   end

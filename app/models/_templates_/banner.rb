@@ -1,5 +1,5 @@
-class BannerStorage < ActiveRecord::Base
-  include ::Baeneroid::Model
+class Banner < ActiveRecord::Base
+  include ::TheBanners::Model
 
   has_attached_file :image, styles: { small: '200x200>' } #, default_url: "/images/:style/missing.png"
 

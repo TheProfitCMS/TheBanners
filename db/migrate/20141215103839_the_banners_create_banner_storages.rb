@@ -1,6 +1,6 @@
-class BaeneroidCreateBannerStorages < ActiveRecord::Migration
+class TheBannersCreateBanners < ActiveRecord::Migration
   def change
-    create_table :banner_storages do |t|
+    create_table :banners do |t|
       t.string :name
       t.string :slug
 
@@ -18,8 +18,8 @@ class BaeneroidCreateBannerStorages < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :banner_storages, :state
-    add_index :banner_storages, :view_counter
-    add_index :banner_storages, :click_counter
+    add_index :banners, :state
+    add_index :banners, :view_counter
+    add_index :banners, :click_counter
   end
 end

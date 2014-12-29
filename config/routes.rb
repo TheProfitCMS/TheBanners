@@ -1,19 +1,19 @@
-module Baeneroid
-  # Baeneroid::Routes.mixin(self)
+module TheBanners
+  # TheBanners::Routes.mixin(self)
 
   class Routes
     def self.mixin mapper
-      mapper.get 'baeneroid/proxy' => 'baeneroid#proxy', as: 'baeneroid_proxy'
-      mapper.get 'baeneroid/ping' => 'baeneroid#ping', as: 'baeneroid_ping'
+      mapper.get 'the_banners/proxy' => 'the_banners#proxy', as: 'the_banners_proxy'
+      mapper.get 'the_banners/ping' => 'the_banners#ping', as: 'the_banners_ping'
 
-      mapper.get 'baeneroid/index' => 'baeneroid#index', as: 'baeneroid_index'
+      mapper.get 'the_banners/index' => 'the_banners#index', as: 'the_banners_index'
 
-      mapper.get 'baeneroid/new' => 'baeneroid#new', as: 'new_baeneroid'
-      mapper.get 'baeneroid/edit/:id' => 'baeneroid#edit', as: 'edit_baeneroid'
+      mapper.get 'the_banners/new' => 'the_banners#new', as: 'new_the_banners'
+      mapper.get 'the_banners/edit/:id' => 'the_banners#edit', as: 'edit_the_banners'
 
-      mapper.post   'baeneroid' => 'baeneroid#create', as: 'create_baeneroid'
-      mapper.patch  'baeneroid/:id' => 'baeneroid#update', as: 'update_baeneroid'
-      mapper.delete 'baeneroid/:id' => 'baeneroid#destroy', as: 'destroy_baeneroid'
+      mapper.post   'the_banners' => 'the_banners#create', as: 'create_the_banners'
+      mapper.patch  'the_banners/:id' => 'the_banners#update', as: 'update_the_banners'
+      mapper.delete 'the_banners/:id' => 'the_banners#destroy', as: 'destroy_the_banners'
     end
   end
 
