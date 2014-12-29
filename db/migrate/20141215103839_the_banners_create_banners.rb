@@ -1,4 +1,4 @@
-class TheBannersCreateBanners < ActiveRecord::Migration
+class TheBannersCreateTheBanners < ActiveRecord::Migration
   def change
     create_table :banners do |t|
       t.string :name
@@ -13,13 +13,9 @@ class TheBannersCreateBanners < ActiveRecord::Migration
       t.integer :view_counter, default: 0
       t.integer :click_counter, default: 0
 
-      t.string :state, null: false
+      t.string :state, default: 'draft', null: false
 
-      # t.timestamps
+      t.timestamps
     end
-
-    add_index :banners, :state
-    add_index :banners, :view_counter
-    add_index :banners, :click_counter
   end
 end

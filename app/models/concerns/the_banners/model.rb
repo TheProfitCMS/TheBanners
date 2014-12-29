@@ -18,13 +18,11 @@ module TheBanners
 
 
       def inc_view_count!
-        conn.update("update `banners` set `view_counter` = `view_counter` + 1 where `id` = #{self.id}")
-        true
+        update_columns(view_counter: self.view_counter + 1)
       end
 
       def inc_click_count!
-        conn.update("update `banners` set `click_counter` = `click_counter` + 1 where `id` = #{self.id}")
-        true
+        update_columns(click_counter: self.click_counter + 1)
       end
 
       def published?
@@ -50,12 +48,6 @@ module TheBanners
         style="position:absolute; top:0; left:0; display:inline-block; width:#{banner.w}px; height:#{banner.h}px; z-index:5;"></a>
         </div>
         )
-      end
-
-      private
-
-      def conn
-        self.class.connection
       end
     end
 

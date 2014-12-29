@@ -1,4 +1,4 @@
-class TheBannersAddImageColumnsToBanners < ActiveRecord::Migration
+class TheBannersAddImageColumnsToTheBanners < ActiveRecord::Migration
   def self.up
     add_attachment :banners, :image
   end
