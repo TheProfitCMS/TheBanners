@@ -2,11 +2,14 @@ module TheBanners
   module Model
     extend ActiveSupport::Concern
 
+    LOCATIONS = %w(top-800-150 sidebar-200-400 bottom-800-150)
+
     included do
-      has_attached_file :image, styles: { small: '200x200>' } #, default_url: "/images/:style/missing.png"
+      has_attached_file :image, styles: { small: '200x200>' }, path: TheBanners.config.images_path
 
       validates_uniqueness_of :name
       validates_inclusion_of :state, in: %w(draft publication)
+      # validates_inclusion_of :location, in: LOCATIONS
       validates_presence_of :w, :h
 
       validates :image, attachment_presence: false
@@ -15,6 +18,9 @@ module TheBanners
       before_save do
         self.slug = self.name.to_slug_param
       end
+
+      scope :for_location, ->(location) { where(location: location) }
+      scope :published, -> { where(state: 'publication') }
 
 
       def inc_view_count!
@@ -36,18 +42,19 @@ module TheBanners
         )
       end
 
-      def self.insert_chunk(slug, target)
-        banner = where(slug: slug, state: 'publication').first
-        return nil unless banner
-
+      def insert(target)
         %Q(
         <div style="position:relative;">
-        <iframe src="#{target}?id=#{banner.id}" width="#{banner.w}" height="#{banner.h}"> </iframe>
+        <iframe src="#{target}?id=#{self.id}" width="#{self.w}" height="#{self.h}"> </iframe>
 
-        <a href="#{target}?id=#{banner.id}&click=true"
-        style="position:absolute; top:0; left:0; display:inline-block; width:#{banner.w}px; height:#{banner.h}px; z-index:5;"></a>
+        <a href="#{target}?id=#{self.id}&click=true"
+        style="position:absolute; top:0; left:0; display:inline-block; width:#{self.w}px; height:#{self.h}px; z-index:5;"></a>
         </div>
         )
+      end
+
+      def self.locations
+        LOCATIONS
       end
     end
 

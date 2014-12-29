@@ -2,5 +2,5 @@ class BannersController < ApplicationController
   # layout 'bootstrap_default'
   include TheBanners::Controller
 
-  # Banner.insert_chunk("banner_slug", the_banners_proxy_url)
+  # Banner.for_location('top-800-150').published.first.try(:insert, banners_proxy_url)
 end

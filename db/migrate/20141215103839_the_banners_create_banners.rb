@@ -4,6 +4,7 @@ class TheBannersCreateBanners < ActiveRecord::Migration
       t.string :name
       t.string :slug
 
+      t.string :location
       t.text :html_code, null: false
       t.text :uri, null: false
 

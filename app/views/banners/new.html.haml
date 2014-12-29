@@ -41,6 +41,11 @@
     %br
 
     .field
+      = f.label :location, 'Позиция'
+      = f.select :location, options_for_select(Banner.locations)
+    %br
+
+    .field
       = f.label :image, 'Изображение'
       = f.file_field :image
 

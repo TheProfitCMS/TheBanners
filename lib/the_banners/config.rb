@@ -10,11 +10,7 @@ module TheBanners
   class Configuration
     include ActiveSupport::Configurable
 
-    # config_accessor :test_accessor
+    config_accessor :images_path
   end
-
-  # configure do |config|
-  #   config.test_accessor = true
-  # end
 
 end

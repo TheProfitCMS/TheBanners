@@ -64,7 +64,7 @@ module TheBanners
     private
 
     def banner_params
-      params.require(:banner).permit(:name, :html_code, :uri, :w, :h, :state, :image)
+      params.require(:banner).permit(:name, :location, :html_code, :uri, :w, :h, :state, :image)
     end
 
     def current_banner
