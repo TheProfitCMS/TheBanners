@@ -35,7 +35,7 @@ class TheBannersGenerator < Rails::Generators::NamedBase
   def cp_controllers
     _path = "#{ root_path }/app/controllers/_templates_"
 
-    %w(the_banners_controller.rb).each do |file_name|
+    %w(banners_controller.rb).each do |file_name|
       copy_file "#{ _path }/#{ file_name }", "app/controllers/#{ file_name }"
     end
   end

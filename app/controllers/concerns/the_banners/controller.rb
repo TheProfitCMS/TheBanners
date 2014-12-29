@@ -40,7 +40,7 @@ module TheBanners
       @banner = Banner.new banner_params
 
       if @banner.save
-        redirect_to the_banners_index_url, notice: 'Баннер сохранён.'
+        redirect_to banners_index_url, notice: 'Баннер сохранён.'
       else
         render action: 'new'
       end
@@ -50,7 +50,7 @@ module TheBanners
       @banner = current_banner
 
       if @banner.update_attributes banner_params
-        redirect_to the_banners_index_url, notice: 'Баннер обновлён.'
+        redirect_to banners_index_url, notice: 'Баннер обновлён.'
       else
         render action: 'edit'
       end
@@ -58,7 +58,7 @@ module TheBanners
 
     def destroy
       current_banner.destroy
-      redirect_to the_banners_index_url, notice: 'Баннер удалён.'
+      redirect_to banners_index_url, notice: 'Баннер удалён.'
     end
 
     private

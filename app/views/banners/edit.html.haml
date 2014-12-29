@@ -2,11 +2,11 @@
 
   %h1 Править баннер
 
-  = link_to 'Назад', the_banners_index_url, class: 'pull-right'
+  = link_to 'Назад', banners_index_url, class: 'pull-right'
 
   %br
 
-  = form_for @banner, url: update_the_banners_url(@banner) do |f|
+  = form_for @banner, url: update_banners_url(@banner) do |f|
     - if @banner.errors.any?
       #error_explanation
         %h2= "#{pluralize(@banner.errors.count, 'error')} prohibited this banner from being saved:"
@@ -51,7 +51,7 @@
 
     .field
       = f.label :state, 'Опубликовать?'
-      = f.check_box :state, {}, 'publication', 'draft'
+      = f.select :state, '<option value="publication">Да</option><option value="draft">Нет</option>'.html_safe
     %br
 
     .actions

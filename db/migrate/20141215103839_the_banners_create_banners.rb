@@ -1,4 +1,4 @@
-class TheBannersCreateTheBanners < ActiveRecord::Migration
+class TheBannersCreateBanners < ActiveRecord::Migration
   def change
     create_table :banners do |t|
       t.string :name
