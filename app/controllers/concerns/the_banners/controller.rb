@@ -5,20 +5,14 @@ module TheBanners
     extend ActiveSupport::Concern
 
     def proxy
-      if current_banner
-        current_banner.inc_view_count!
-
-        if params[:click] == 'true'
-          current_banner.inc_click_count!
-          redirect_to current_banner.uri
-        else
-          render text: current_banner.iframe_content
-        end
-      else
-        head(404, content_type: 'text/html')
-      end
+      current_banner.inc_view_count!
+      render text: iframe_content(current_banner)
     end
 
+    def click
+      current_banner.inc_click_count!
+      redirect_to current_banner.uri
+    end
 
     def index
       @banners = Banner.all
@@ -59,12 +53,36 @@ module TheBanners
 
     private
 
+    def iframe_content banner
+      return %Q(
+        <html>
+          <body style='margin:0;padding:0'>
+            #{ banner.html_code }
+          </body>
+        </html>
+      ) if banner.html_code.present?
+
+      return %Q(
+        <html>
+          <body style='margin:0;padding:0'>
+            <img src="#{ banner.image.url }" alt="#{ banner.name }"/>
+          </body>
+        </html>
+      ) if banner.image.present?
+
+      "<center>Nothing here</center>"
+    end
+
     def banner_params
       params.require(:banner).permit(:name, :location, :html_code, :uri, :w, :h, :state, :image)
     end
 
     def current_banner
-      @current_banner ||= Banner.find_by_id params[:id].to_i
+      unless @current_banner ||= Banner.where(id: params[:id]).first
+        return render(text: "Banner not found", status: 404)
+      end
+
+      @current_banner
     end
 
   end

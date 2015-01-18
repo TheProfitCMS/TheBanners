@@ -39,8 +39,10 @@ rake db:migrate
 ### Manage banners
 
 ```ruby
-= link_to t('.banners'), baeneroid_index_path, class: 'list-group-item'
+= link_to t('.banners'), banners_path, class: 'list-group-item'
 ```
+
+**layout.html.erb**
 
 ```ruby
 = yield :the_banners_main

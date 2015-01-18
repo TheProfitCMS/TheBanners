@@ -10,8 +10,8 @@
     %thead
       %tr
         %th Имя
-        %th Slug
         %th Ссылка
+        %th Позиция
         %th Ширина (пкс.)
         %th Высота (пкс.)
         %th Счётчик просмотров
@@ -24,7 +24,7 @@
         - if banner.published?
           %tr.success
             %td= banner.name
-            %td= banner.slug
+            %td= banner.location
             %td= banner.uri
             %td= banner.w
             %td= banner.h

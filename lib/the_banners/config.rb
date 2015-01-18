@@ -10,7 +10,7 @@ module TheBanners
   class Configuration
     include ActiveSupport::Configurable
 
-    config_accessor :images_path
+    config_accessor :images_path, :images_url
   end
 
 end

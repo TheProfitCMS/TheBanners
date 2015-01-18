@@ -3,10 +3,11 @@ module TheBanners
 
   class Routes
     def self.mixin mapper
-      
+
       mapper.resources :banners, except: [:show] do
         mapper.collection do
           mapper.get :proxy
+          mapper.get :click
         end
       end
 

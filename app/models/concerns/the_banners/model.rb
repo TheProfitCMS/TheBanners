@@ -5,12 +5,16 @@ module TheBanners
     LOCATIONS = %w(top-800-150 sidebar-200-400 bottom-800-150)
 
     included do
-      has_attached_file :image, styles: { small: '200x200>' }, path: TheBanners.config.images_path
+      has_attached_file :image,
+        styles: { small: '200x200>' },
+        path: TheBanners.config.images_path,
+        url:  TheBanners.config.images_url
 
+      validates_inclusion_of  :state, in: %w(draft publication)
+      validates_presence_of   :w, :h
       validates_uniqueness_of :name
-      validates_inclusion_of :state, in: %w(draft publication)
+
       # validates_inclusion_of :location, in: LOCATIONS
-      validates_presence_of :w, :h
 
       validates :image, attachment_presence: false
       validates_attachment_content_type :image, content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"]
@@ -35,21 +39,44 @@ module TheBanners
         state == 'publication'
       end
 
-      def iframe_content
+      def insert
+        banner = self
+        target = "/banners/proxy/?id=#{ banner.id }"
+
         %Q(
-        <img src="#{image.url}" alt="#{self.slug}"/>
-        #{self.html_code}
+          <div style="position:relative;margin:0;padding:0;">
+            <iframe
+              src="#{ target }"
+              width="#{  self.w }"
+              height="#{ self.h }"
+              border="0"
+              allowtransparency="true"
+              frameborder="0"
+              scrolling="no"
+              z-index:4;
+            ></iframe>
+
+            #{ banner.link if banner.uri.present? }
+          </div>
         )
       end
 
-      def insert(target)
-        %Q(
-        <div style="position:relative;">
-        <iframe src="#{target}?id=#{self.id}" width="#{self.w}" height="#{self.h}"> </iframe>
+      def link
+        banner = self
+        target = "/banners/click/?id=#{ banner.id }"
 
-        <a href="#{target}?id=#{self.id}&click=true"
-        style="position:absolute; top:0; left:0; display:inline-block; width:#{self.w}px; height:#{self.h}px; z-index:5;"></a>
-        </div>
+        %Q(
+          <a
+            href="#{ target }"
+            style="
+              position:absolute;
+              top:0;left:0;
+              display:inline-block;
+              width: #{ banner.w }px;
+              height:#{ banner.h }px;
+              z-index:5;
+            "
+          ></a>
         )
       end
 
