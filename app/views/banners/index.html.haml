@@ -16,30 +16,25 @@
         %th Высота (пкс.)
         %th Счётчик просмотров
         %th Счётчик кликов
+        %th{ alt: "кликабельность", title: "кликабельность"}
+          = link_to 'CTR', 'https://ru.wikipedia.org/wiki/CTR_(интернет)'
         %th
         %th
 
     %tbody
       - @banners.each do |banner|
-        - if banner.published?
-          %tr.success
+        - if
+          %tr{ class: (banner.published? ? :success :  :active) }
             %td= banner.name
+            %td= banner.uri
             %td= banner.location
-            %td= banner.uri
             %td= banner.w
             %td= banner.h
             %td= banner.view_counter
             %td= banner.click_counter
-            %td= link_to 'Правка', edit_banner_url(banner)
-            %td= link_to 'Удалить', banner_url(banner), method: :delete, data: { confirm: 'Вы уверены?' }
-        - else
-          %tr.active
-            %td= banner.name
-            %td= banner.slug
-            %td= banner.uri
-            %td= banner.w
-            %td= banner.h
-            %td= banner.view_counter
-            %td= banner.click_counter
+            %td
+              - ctr = banner.click_counter.to_f / banner.view_counter.to_f
+              - ctr = (ctr.nan? || ctr.infinite?) ? 0 : ctr
+              = "%2.5f" % ctr
             %td= link_to 'Правка', edit_banner_url(banner)
             %td= link_to 'Удалить', banner_url(banner), method: :delete, data: { confirm: 'Вы уверены?' }
