@@ -54,6 +54,8 @@ module TheBanners
     private
 
     def iframe_content banner
+      target = "/banners/click/?id=#{ banner.id }"
+
       return %Q(
         <html>
           <body style='margin:0;padding:0'>
@@ -61,6 +63,28 @@ module TheBanners
           </body>
         </html>
       ) if banner.html_code.present?
+
+      return %Q(
+        <html>
+          <body style='margin:0;padding:0'>
+
+            <a
+              href="#{ target }"
+              target="_blank"
+              style="
+                position:absolute;
+                top:0;left:0;
+                display:inline-block;
+                width: #{ banner.w }px;
+                height:#{ banner.h }px;
+                z-index:5;
+              "
+            >
+              <img src="#{ banner.image.url }" alt="#{ banner.name }"/>
+            </a>
+          </body>
+        </html>
+      ) if banner.image.present? && banner.uri.present?
 
       return %Q(
         <html>

@@ -26,6 +26,9 @@ module TheBanners
       scope :for_location, ->(location) { where(location: location) }
       scope :published, -> { where(state: 'publication') }
 
+      def self.locations
+        LOCATIONS
+      end
 
       def inc_view_count!
         update_columns(view_counter: self.view_counter + 1)
@@ -50,38 +53,14 @@ module TheBanners
               width="#{  self.w }"
               height="#{ self.h }"
               border="0"
+
               allowtransparency="true"
               frameborder="0"
               scrolling="no"
               z-index:4;
             ></iframe>
-
-            #{ banner.link if banner.uri.present? }
           </div>
         )
-      end
-
-      def link
-        banner = self
-        target = "/banners/click/?id=#{ banner.id }"
-
-        %Q(
-          <a
-            href="#{ target }"
-            style="
-              position:absolute;
-              top:0;left:0;
-              display:inline-block;
-              width: #{ banner.w }px;
-              height:#{ banner.h }px;
-              z-index:5;
-            "
-          ></a>
-        )
-      end
-
-      def self.locations
-        LOCATIONS
       end
     end
 
