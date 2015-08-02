@@ -48,4 +48,28 @@ rake db:migrate
 = yield :the_banners_main
 ```
 
+```ruby
+# Banner.for_location('left-top-198-240').published.first.try(:insert, banners_proxy_url)
+
+class Banner < ActiveRecord::Base
+  include ::TheBanners::Model
+
+  def self.locations
+    %w(left-top-198-240)
+  end
+end
+```
+
+```ruby
+TheBanners.configure do |config|
+  config.images_path = ':rails_root/public/uploads/:class/:attachment/:style/:filename'
+  config.images_url  = '/uploads/:class/:attachment/:style/:filename'
+end
+```
+
+```ruby
+- content_for :left_sidebar do
+  = raw Banner.for_location('left-top-198-240').published.sample.try(:insert)
+```
+
 This project rocks and uses MIT-LICENSE.
