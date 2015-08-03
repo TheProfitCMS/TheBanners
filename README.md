@@ -79,4 +79,8 @@ end
   = raw Banner.for_location('left-top-198-240').published.sample.try(:insert)
 ```
 
+```ruby
+TheBanners::Routes.mixin(self)
+```
+
 This project rocks and uses MIT-LICENSE.
