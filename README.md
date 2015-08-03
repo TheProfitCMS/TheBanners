@@ -68,6 +68,13 @@ end
 ```
 
 ```ruby
+class BannersController < ApplicationController
+  layout 'bootstrap_default'
+  include TheBanners::Controller
+end
+```
+
+```ruby
 - content_for :left_sidebar do
   = raw Banner.for_location('left-top-198-240').published.sample.try(:insert)
 ```
